@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "prediction", "label": "prediction", "shape": "dot", "size": 10}, {"id": "data_science", "label": "data_science", "shape": "dot", "size": 10}, {"id": "ds", "label": "ds", "shape": "dot", "size": 10}, {"id": "data-driven", "label": "data-driven", "shape": "dot", "size": 10}, {"id": "python", "label": "python", "shape": "dot", "size": 10}, {"id": "cancer", "label": "cancer", "shape": "dot", "size": 10}, {"id": "pipeline", "label": "pipeline", "shape": "dot", "size": 10}, {"id": "step", "label": "step", "shape": "dot", "size": 10}, {"id": "skills", "label": "skills", "shape": "dot", "size": 10}, {"id": "high-dimensional", "label": "high-dimensional", "shape": "dot", "size": 10}, {"id": "methodologies", "label": "methodologies", "shape": "dot", "size": 10}, {"id": "decisions", "label": "decisions", "shape": "dot", "size": 10}, {"id": "dataset", "label": "dataset", "shape": "dot", "size": 10}, {"id": "low-rank", "label": "low-rank", "shape": "dot", "size": 10}, {"id": "randomized", "label": "randomized", "shape": "dot", "size": 10}, {"id": "extract", "label": "extract", "shape": "dot", "size": 10}, {"id": "fairness", "label": "fairness", "shape": "dot", "size": 10}, {"id": "trained", "label": "trained", "shape": "dot", "size": 10}, {"id": "conduct", "label": "conduct", "shape": "dot", "size": 10}, {"id": "data_sciences", "label": "data_sciences", "shape": "dot", "size": 10}, {"id": "faster", "label": "faster", "shape": "dot", "size": 10}, {"id": "job", "label": "job", "shape": "dot", "size": 10}, {"id": "libraries", "label": "libraries", "shape": "dot", "size": 10}, {"id": "idea", "label": "idea", "shape": "dot", "size": 10}, {"id": "guarantees", "label": "guarantees", "shape": "dot", "size": 10}, {"id": "strategy", "label": "strategy", "shape": "dot", "size": 10}, {"id": "classifier", "label": "classifier", "shape": "dot", "size": 10}, {"id": "reproducibility", "label": "reproducibility", "shape": "dot", "size": 10}, {"id": "fact", "label": "fact", "shape": "dot", "size": 10}, {"id": "kaggle", "label": "kaggle", "shape": "dot", "size": 10}, {"id": "pandemic", "label": "pandemic", "shape": "dot", "size": 10}, {"id": "algorithm", "label": "algorithm", "shape": "dot", "size": 10}, {"id": "often", "label": "often", "shape": "dot", "size": 10}, {"id": "https", "label": "https", "shape": "dot", "size": 10}, {"id": "outperforms", "label": "outperforms", "shape": "dot", "size": 10}, {"id": "conducted", "label": "conducted", "shape": "dot", "size": 10}, {"id": "notebooks", "label": "notebooks", "shape": "dot", "size": 10}, {"id": "estimator", "label": "estimator", "shape": "dot", "size": 10}, {"id": "sparse", "label": "sparse", "shape": "dot", "size": 10}, {"id": "predictive", "label": "predictive", "shape": "dot", "size": 10}, {"id": "utility", "label": "utility", "shape": "dot", "size": 10}, {"id": "jupyter", "label": "jupyter", "shape": "dot", "size": 10}, {"id": "amounts", "label": "amounts", "shape": "dot", "size": 10}, {"id": "automl", "label": "automl", "shape": "dot", "size": 10}, {"id": "countries", "label": "countries", "shape": "dot", "size": 10}, {"id": "forecasting", "label": "forecasting", "shape": "dot", "size": 10}, {"id": "shared", "label": "shared", "shape": "dot", "size": 10}, {"id": "labels", "label": "labels", "shape": "dot", "size": 10}, {"id": "valuable", "label": "valuable", "shape": "dot", "size": 10}, {"id": "data-science", "label": "data-science", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "prediction", "to": "data_science", "weight": 1.0}, {"from": "prediction", "to": "ds", "weight": 1.0}, {"from": "data_science", "to": "ds", "weight": 1.0}, {"from": "data_science", "to": "data-driven", "weight": 1.0}, {"from": "data_science", "to": "python", "weight": 1.0}, {"from": "data_science", "to": "cancer", "weight": 1.0}, {"from": "data_science", "to": "pipeline", "weight": 1.0}, {"from": "data_science", "to": "step", "weight": 1.0}, {"from": "data_science", "to": "skills", "weight": 1.0}, {"from": "data_science", "to": "high-dimensional", "weight": 1.0}, {"from": "data_science", "to": "methodologies", "weight": 1.0}, {"from": "data_science", "to": "decisions", "weight": 1.0}, {"from": "data_science", "to": "dataset", "weight": 1.0}, {"from": "data_science", "to": "low-rank", "weight": 1.0}, {"from": "data_science", "to": "randomized", "weight": 1.0}, {"from": "data_science", "to": "extract", "weight": 1.0}, {"from": "data_science", "to": "fairness", "weight": 1.0}, {"from": "data_science", "to": "trained", "weight": 1.0}, {"from": "data_science", "to": "conduct", "weight": 1.0}, {"from": "data_science", "to": "data_sciences", "weight": 1.0}, {"from": "data_science", "to": "faster", "weight": 1.0}, {"from": "data_science", "to": "job", "weight": 1.0}, {"from": "data_science", "to": "libraries", "weight": 1.0}, {"from": "data_science", "to": "idea", "weight": 1.0}, {"from": "data_science", "to": "guarantees", "weight": 1.0}, {"from": "data_science", "to": "strategy", "weight": 1.0}, {"from": "data_science", "to": "classifier", "weight": 1.0}, {"from": "data_science", "to": "reproducibility", "weight": 1.0}, {"from": "data_science", "to": "fact", "weight": 1.0}, {"from": "data_science", "to": "kaggle", "weight": 1.0}, {"from": "data_science", "to": "pandemic", "weight": 1.0}, {"from": "data_science", "to": "algorithm", "weight": 1.0}, {"from": "data_science", "to": "often", "weight": 1.0}, {"from": "data_science", "to": "https", "weight": 1.0}, {"from": "data_science", "to": "outperforms", "weight": 1.0}, {"from": "data_science", "to": "conducted", "weight": 1.0}, {"from": "data_science", "to": "notebooks", "weight": 1.0}, {"from": "data_science", "to": "estimator", "weight": 1.0}, {"from": "data_science", "to": "sparse", "weight": 1.0}, {"from": "data_science", "to": "predictive", "weight": 1.0}, {"from": "data_science", "to": "utility", "weight": 1.0}, {"from": "data_science", "to": "jupyter", "weight": 1.0}, {"from": "data_science", "to": "amounts", "weight": 1.0}, {"from": "data_science", "to": "automl", "weight": 1.0}, {"from": "data_science", "to": "countries", "weight": 1.0}, {"from": "data_science", "to": "forecasting", "weight": 1.0}, {"from": "data_science", "to": "shared", "weight": 1.0}, {"from": "data_science", "to": "labels", "weight": 1.0}, {"from": "data_science", "to": "valuable", "weight": 1.0}, {"from": "data-driven", "to": "ds", "weight": 1.0}, {"from": "python", "to": "ds", "weight": 1.0}, {"from": "python", "to": "notebooks", "weight": 1.0}, {"from": "cancer", "to": "ds", "weight": 1.0}, {"from": "pipeline", "to": "ds", "weight": 1.0}, {"from": "step", "to": "ds", "weight": 1.0}, {"from": "skills", "to": "ds", "weight": 1.0}, {"from": "high-dimensional", "to": "ds", "weight": 1.0}, {"from": "methodologies", "to": "ds", "weight": 1.0}, {"from": "dataset", "to": "ds", "weight": 1.0}, {"from": "low-rank", "to": "ds", "weight": 1.0}, {"from": "low-rank", "to": "algorithm", "weight": 1.0}, {"from": "randomized", "to": "ds", "weight": 1.0}, {"from": "randomized", "to": "algorithm", "weight": 1.0}, {"from": "extract", "to": "ds", "weight": 1.0}, {"from": "fairness", "to": "ds", "weight": 1.0}, {"from": "fairness", "to": "algorithm", "weight": 1.0}, {"from": "trained", "to": "ds", "weight": 1.0}, {"from": "conduct", "to": "ds", "weight": 1.0}, {"from": "conduct", "to": "conducted", "weight": 1.0}, {"from": "data_sciences", "to": "ds", "weight": 1.0}, {"from": "ds", "to": "faster", "weight": 1.0}, {"from": "ds", "to": "job", "weight": 1.0}, {"from": "ds", "to": "idea", "weight": 1.0}, {"from": "ds", "to": "guarantees", "weight": 1.0}, {"from": "ds", "to": "strategy", "weight": 1.0}, {"from": "ds", "to": "data-science", "weight": 1.0}, {"from": "ds", "to": "classifier", "weight": 1.0}, {"from": "ds", "to": "reproducibility", "weight": 1.0}, {"from": "ds", "to": "fact", "weight": 1.0}, {"from": "ds", "to": "kaggle", "weight": 1.0}, {"from": "ds", "to": "pandemic", "weight": 1.0}, {"from": "ds", "to": "algorithm", "weight": 1.0}, {"from": "ds", "to": "often", "weight": 1.0}, {"from": "ds", "to": "https", "weight": 1.0}, {"from": "ds", "to": "outperforms", "weight": 1.0}, {"from": "ds", "to": "conducted", "weight": 1.0}, {"from": "ds", "to": "estimator", "weight": 1.0}, {"from": "ds", "to": "sparse", "weight": 1.0}, {"from": "ds", "to": "predictive", "weight": 1.0}, {"from": "ds", "to": "utility", "weight": 1.0}, {"from": "ds", "to": "amounts", "weight": 1.0}, {"from": "ds", "to": "countries", "weight": 1.0}, {"from": "ds", "to": "forecasting", "weight": 1.0}, {"from": "ds", "to": "shared", "weight": 1.0}, {"from": "ds", "to": "valuable", "weight": 1.0}, {"from": "guarantees", "to": "algorithm", "weight": 1.0}, {"from": "algorithm", "to": "sparse", "weight": 1.0}, {"from": "notebooks", "to": "jupyter", "weight": 1.0}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
