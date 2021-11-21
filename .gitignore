@@ -1,4 +1,5 @@
 .git
+**/Skripte
 **/.ipynb_checkpoints
 **/.Rhistory
 **/air_temp_2017
